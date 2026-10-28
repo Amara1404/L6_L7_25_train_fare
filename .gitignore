@@ -4,3 +4,4 @@
 !coverage_screenshots/
 !coverage_screenshots/**
 !.gitignore
+!*.pdf
