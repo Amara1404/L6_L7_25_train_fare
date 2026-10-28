@@ -41,3 +41,8 @@ def test_tatkal_charge_non_sl_clamped_high():
 
 def test_tatkal_charge_sl_clamped_low():
     assert tatkal_charge("SL", 500) == 100
+
+#--- Branch coverage test cases ---
+
+def test_tatkal_charge_no_clamp():
+    assert tatkal_charge("SL", 2000) == 200
