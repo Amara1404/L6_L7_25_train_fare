@@ -1,14 +1,8 @@
 import pytest
 from train_fare import base_fare, concession, tatkal_charge
 
-#Example test cases:
-def test_sleeper_fare():
-    assert base_fare("SL", 500) == 500
-
-def test_adult_no_concession():
-    assert concession(30, "M", False) == 0
-
-#--- Code (statement) coverage test cases ---
+#--- Branch coverage test cases ---
+#Covers every True/False outcome of every if/elif in train_fare.py
 
 def test_base_fare_unknown_class():
     with pytest.raises(ValueError):
@@ -20,6 +14,9 @@ def test_base_fare_invalid_distance():
 
 def test_base_fare_minimum_bump():
     assert base_fare("SL", 10) == 50
+
+def test_sleeper_fare():
+    assert base_fare("SL", 500) == 500
 
 def test_concession_tatkal():
     assert concession(30, "M", True) == 0
@@ -36,13 +33,14 @@ def test_concession_senior_female():
 def test_concession_senior_male():
     assert concession(65, "M", False) == 40
 
+def test_adult_no_concession():
+    assert concession(30, "M", False) == 0
+
 def test_tatkal_charge_non_sl_clamped_high():
     assert tatkal_charge("2A", 2000) == 400
 
 def test_tatkal_charge_sl_clamped_low():
     assert tatkal_charge("SL", 500) == 100
-
-#--- Branch coverage test cases ---
 
 def test_tatkal_charge_no_clamp():
     assert tatkal_charge("SL", 2000) == 200
